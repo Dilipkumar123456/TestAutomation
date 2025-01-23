@@ -1,0 +1,33 @@
+name: Java CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull request to main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Define the operating system for the job
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Checkout the repository
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  # Define Java version (e.g., 11, 8, etc.)
+          distribution: 'adoptopenjdk'
+
+      - name: Build with Maven
+        run: mvn clean install  # Maven command to build your project
+
+      - name: Run Tests with Maven
+        run: mvn test  # Run tests using Maven
+      
+      # Optionally deploy to a server or perform additional steps here
+      # - name: Deploy to Production
+      #   run: ./deploy.sh
