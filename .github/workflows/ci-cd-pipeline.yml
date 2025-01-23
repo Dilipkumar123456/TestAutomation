@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'  # Define Java version (e.g., 11, 8, etc.)
+          distribution: 'OpenJDK 11 (LTS)'
 
       - name: Build with Maven
         run: mvn clean install  # Maven command to build your project
