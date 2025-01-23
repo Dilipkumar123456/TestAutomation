@@ -41,6 +41,19 @@ jobs:
     - name: Run Selenium tests
       run: mvn test
 
+    # Step 6: Notify on success
+    - name: Notify Success
+      if: success()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.payload.pull_request ? context.payload.pull_request.number : context.payload.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: "🎉 CI/CD pipeline succeeded for this pull request! All tests passed. Great job! 🚀"
+          })
+
     # Optional: Upload test results or logs as artifacts (if needed)
     - name: Upload Test Results
       if: always() # Always run this step to capture logs even if tests fail
