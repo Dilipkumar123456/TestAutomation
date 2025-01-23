@@ -48,7 +48,7 @@ jobs:
       with:
         script: |
           github.rest.issues.createComment({
-            issue_number: context.payload.pull_request ? context.payload.pull_request.number : context.payload.issue.number,
+            issue_number: context.payload.pull_request ? 
             owner: context.repo.owner,
             repo: context.repo.repo,
             body: "🎉 CI/CD pipeline succeeded for this pull request! All tests passed. Great job! 🚀"
