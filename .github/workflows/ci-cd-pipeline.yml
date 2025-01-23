@@ -44,7 +44,7 @@ jobs:
     # Optional: Upload test results or logs as artifacts (if needed)
     - name: Upload Test Results
       if: always() # Always run this step to capture logs even if tests fail
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: target/surefire-reports/*.xml
